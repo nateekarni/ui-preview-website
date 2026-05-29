@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กยศ. Mobile Portal - Dashboard</title>
+    <!-- Google Fonts for Modern Thai and English Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+    <!-- Mobile App Preview -->
+    <div class="app-container">
+
+        <!-- Phone Shell Container -->
+        <div class="phone-shell" id="phone-shell-container" style="display: block;">
+            <!-- Screen Notch / Dynamic Island Mock -->
+            <div class="phone-notch"></div>
+            
+            <!-- Main App Viewport -->
+            <div class="app-viewport">
+                <!-- Phone Status Bar -->
+                <div class="phone-status-bar">
+                    <span class="status-time" id="live-clock">09:11</span>
+                    <div class="status-icons">
+                        <i class="fa-solid fa-wifi"></i>
+                        <i class="fa-solid fa-signal"></i>
+                        <i class="fa-solid fa-battery-three-quarters"></i>
+                    </div>
+                </div>
+                
+                <!-- APP HEADER -->
+                <!-- APP HEADER -->
+                <header class="app-header">
+                    <div class="header-left">
+                        <div class="app-logo">
+                            <!-- Official high fidelity image logo of Student Loan Fund (กยศ.) from downloads -->
+                            <img src="DSL.png" alt="กยศ. Logo" class="koyosor-logo-img">
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <!-- Custom Interactive Account Selector Dropdown -->
+                        <div class="account-selector-container">
+                            <button class="account-selector-btn" onclick="toggleAccountDropdown(event)" aria-label="Select Account">
+                                <span class="acc-sel-lbl">บัญชี <span id="header-active-acc-type">กยศ.</span> <span id="header-active-acc-num">100825401</span></span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="account-dropdown-menu" id="account-dropdown">
+                                <div class="dropdown-item active" onclick="switchActiveAccount(1); event.stopPropagation();">
+                                    <span class="type type-koyosor">กยศ.</span>
+                                    <span class="num">#100825401</span>
+                                    <span class="check-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                </div>
+                                <div class="dropdown-item" onclick="switchActiveAccount(2); event.stopPropagation();">
+                                    <span class="type type-kror">กรอ.</span>
+                                    <span class="num">#10082542</span>
+                                    <span class="check-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                </div>
+                                <div class="dropdown-item" onclick="switchActiveAccount(3); event.stopPropagation();">
+                                    <span class="type type-koyosor">กยศ.</span>
+                                    <span class="num">#100825399</span>
+                                    <span class="check-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- DYNAMIC CONTENT CONTAINER (With Scroll) -->
+                <main class="app-content" id="main-content">
+                    
+                    <!-- ================= DASHBOARD VIEW (EXISTING BORROWER) ================= -->
+                    <div id="dashboard-view" class="app-view active">
+                        
+                        <!-- USER GREETING SECTION -->
+                    <section class="welcome-section">
+                        <div class="welcome-header">
+                            <div>
+                                <h1 class="welcome-title">สวัสดี, <span>ทดสอบ ผู้กู้</span></h1>
+                                <p class="welcome-subtitle">คุณมีบัญชีเงินกู้ทั้งหมด 3 บัญชี</p>
+                            </div>
+                            <div class="user-avatar">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- TOTAL FINANCIAL SUMMARY WIDGET (Carousel & Quick Info) -->
+                    <section class="summary-cards-container">
+                        <!-- Main Outstanding Debt Card -->
+                        <div class="summary-card main-debt-card">
+                            <div class="card-bg-gradient"></div>
+                            <div class="card-header-sm">
+                                <span>ยอดเงินต้นคงเหลือรวมทุกบัญชี</span>
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                            <div class="debt-amount">
+                                <span class="currency">฿</span>249,846.19
+                            </div>
+                            <div class="debt-footer">
+                                <span>จากยอดเงินกู้รวม ฿296,400.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Secondary Summary Grid (2 Columns) -->
+                        <div class="summary-grid">
+                            <!-- Circular Progress Paid Card -->
+                            <div class="summary-card progress-paid-card">
+                                <div class="card-label">ชำระไปแล้ว</div>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="70" height="70">
+                                        <circle class="progress-ring__circle-bg" stroke="#f1f3f9" stroke-width="6" fill="transparent" r="28" cx="35" cy="35"/>
+                                        <circle class="progress-ring__circle" stroke="#10b981" stroke-width="6" fill="transparent" r="28" cx="35" cy="35" stroke-dasharray="175.93" stroke-dashoffset="113.75"/>
+                                    </svg>
+                                    <div class="progress-text">35.3%</div>
+                                </div>
+                                <div class="paid-sub-details">
+                                    <span class="amount-paid">฿136,553.81</span>
+                                    <span class="subtext">ยอดเงินต้นที่ชำระแล้ว</span>
+                                </div>
+                            </div>
+
+                            <!-- Total Due Card -->
+                            <div class="summary-card urgent-due-card">
+                                <div class="card-label">ยอดหนี้ค้างชำระ</div>
+                                <div class="due-amount alert-pulse">
+                                    <span class="currency-sm">฿</span>12,103.83
+                                </div>
+                                <div class="due-details">
+                                    <span class="due-warning"><i class="fa-solid fa-circle-exclamation"></i> ครบกำหนดชำระรายบัญชี</span>
+                                    <button class="danger-action-btn-sm" onclick="openPaymentPortal('all', 12103.83)">
+                                        <i class="fa-solid fa-wallet"></i> ชำระทั้งหมด
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- LOAN ACCOUNT LIST SECTION (Re-designed for Mobile) -->
+                    <section class="account-list-section">
+                        <div class="section-header">
+                            <h2 class="section-title">รายการบัญชีเงินกู้</h2>
+                            <span class="badge-count">3 บัญชี</span>
+                        </div>
+
+                        <!-- LIST OF SLICK GLANCEABLE CARDS -->
+                        <div class="glance-cards-list">
+                            
+                            <!-- Account 1 Card (กยศ.) -->
+                            <div class="glance-card status-active" onclick="navigateToDetail(1)">
+                                <div class="glance-card-header">
+                                    <div class="acc-row-main">
+                                        <div class="acc-tags-group">
+                                            <span class="acc-type type-koyosor">กยศ.</span>
+                                            <span class="tag-pill tag-success" style="background-color: #ecfdf5; color: #10b981; border: 1px solid rgba(16, 185, 129, 0.15);">สัญญา 15 ปี</span>
+                                            <span class="tag-pill tag-warning">ปรับโครงสร้างหนี้</span>
+                                        </div>
+                                        <span class="tag-pill tag-success">ปกติ</span>
+                                    </div>
+                                    <div class="acc-row-sub">
+                                        <span class="acc-num">#100825401</span>
+                                    </div>
+                                </div>
+                                <div class="glance-card-body">
+                                    <div class="glance-balance" style="margin-bottom: 6px;">
+                                        <span class="lbl">ยอดคงเหลือสุทธิ</span>
+                                        <span class="val">฿151,346.19</span>
+                                    </div>
+                                    <div style="font-size: 10px; color: var(--dark-muted); margin-bottom: 8px;">
+                                        จากยอดเงินกู้ ฿166,400.00
+                                    </div>
+                                    <div class="glance-due-details">
+                                        <div class="due-row">
+                                            <span class="lbl">ยอดเงินงวดที่ต้องจ่าย:</span>
+                                            <span class="val highlight">฿4,693.20</span>
+                                        </div>
+                                        <div class="due-row">
+                                            <span class="lbl">วันครบกำหนดชำระ:</span>
+                                            <span class="val highlight">05 ก.ค. 2563</span>
+                                        </div>
+                                        <div class="due-row">
+                                            <span class="lbl">ยอดหนี้ค้างชำระสะสม:</span>
+                                            <span class="val danger-highlight">฿2,010.63</span>
+                                        </div>
+                                    </div>
+                                    <div class="glance-card-actions">
+                                        <button class="glance-btn-secondary" onclick="event.stopPropagation(); navigateToDetail(1)">
+                                            รายละเอียดบัญชี <i class="fa-solid fa-chevron-right"></i>
+                                        </button>
+                                        <button class="glance-btn-primary" onclick="event.stopPropagation(); openPaymentScreen(1)">
+                                            <i class="fa-solid fa-wallet"></i> ชำระเงิน
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Account 2 Card (กรอ.) -->
+                            <div class="glance-card status-overdue" onclick="navigateToDetail(2)">
+                                <div class="glance-card-header">
+                                    <div class="acc-row-main">
+                                        <div class="acc-tags-group">
+                                            <span class="acc-type type-kror">กรอ.</span>
+                                            <span class="tag-pill tag-warning">ไกล่เกลี่ย</span>
+                                            <span class="tag-pill tag-warning">ปรับโครงสร้างหนี้</span>
+                                        </div>
+                                        <span class="tag-pill tag-danger">ค้างชำระ</span>
+                                    </div>
+                                    <div class="acc-row-sub">
+                                        <span class="acc-num">#10082542</span>
+                                    </div>
+                                </div>
+                                <div class="glance-card-body">
+                                    <div class="glance-balance" style="margin-bottom: 6px;">
+                                        <span class="lbl">ยอดคงเหลือสุทธิ</span>
+                                        <span class="val">฿98,500.00</span>
+                                    </div>
+                                    <div style="font-size: 10px; color: var(--dark-muted); margin-bottom: 8px;">
+                                        จากยอดเงินกู้ ฿120,000.00
+                                    </div>
+                                    <div class="glance-due-details">
+                                        <div class="due-row">
+                                            <span class="lbl">ยอดเงินงวดที่ต้องจ่าย:</span>
+                                            <span class="val highlight">฿4,200.00</span>
+                                        </div>
+                                        <div class="due-row">
+                                            <span class="lbl">วันครบกำหนดชำระ:</span>
+                                            <span class="val highlight">15 ส.ค. 2563</span>
+                                        </div>
+                                        <div class="due-row">
+                                            <span class="lbl">ยอดหนี้ค้างชำระสะสม:</span>
+                                            <span class="val danger-highlight">฿1,200.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="glance-card-actions">
+                                        <button class="glance-btn-secondary" onclick="event.stopPropagation(); navigateToDetail(2)">
+                                            รายละเอียดบัญชี <i class="fa-solid fa-chevron-right"></i>
+                                        </button>
+                                        <button class="glance-btn-primary" onclick="event.stopPropagation(); openPaymentScreen(2)">
+                                            <i class="fa-solid fa-wallet"></i> ชำระเงิน
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Account 3 Card (กยศ. - ปิดบัญชีแล้ว) -->
+                            <div class="glance-card status-closed" onclick="navigateToDetail(3)">
+                                <div class="glance-card-header">
+                                    <div class="acc-row-main">
+                                        <div class="acc-tags-group">
+                                            <span class="acc-type type-koyosor">กยศ.</span>
+                                            <span class="tag-pill tag-success" style="background-color: #ecfdf5; color: #10b981; border: 1px solid rgba(16, 185, 129, 0.15);">สัญญา 15 ปี</span>
+                                        </div>
+                                        <span class="tag-pill tag-info">ปิดบัญชี</span>
+                                    </div>
+                                    <div class="acc-row-sub">
+                                        <span class="acc-num">#100825399</span>
+                                    </div>
+                                </div>
+                                <div class="glance-card-body">
+                                    <div class="glance-balance" style="margin-bottom: 6px;">
+                                        <span class="lbl">ยอดคงเหลือสุทธิ</span>
+                                        <span class="val success-text">฿0.00</span>
+                                    </div>
+                                    <div style="font-size: 10px; color: var(--dark-muted); margin-bottom: 8px;">
+                                        จากยอดเงินกู้ ฿100,000.00
+                                    </div>
+                                    <div class="glance-due-details" style="border-top-color: rgba(16, 185, 129, 0.15);">
+                                        <div class="due-row">
+                                            <span class="lbl">ยอดเงินที่ชำระเกิน:</span>
+                                            <span class="val success-highlight">฿2,500.00</span>
+                                        </div>
+                                        <div class="due-row">
+                                            <span class="lbl">สถานะรับเงินคืน/บริจาค:</span>
+                                            <span class="val highlight">ยังไม่ทำรายการ</span>
+                                        </div>
+                                    </div>
+                                    <div class="glance-card-actions">
+                                        <button class="glance-btn-secondary" onclick="event.stopPropagation(); navigateToDetail(3)">
+                                            รายละเอียดบัญชี <i class="fa-solid fa-chevron-right"></i>
+                                        </button>
+                                        <button class="glance-btn-primary btn-green" onclick="event.stopPropagation(); handleAction('refund', '100825399')">
+                                            <i class="fa-solid fa-hand-holding-dollar"></i> ขอคืนเงิน
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- QUICK CONTACTS / UTILITIES -->
+                    <section class="quick-utilities-section">
+                        <h3 class="section-title-sm">ช่วยเหลือ & บริการ</h3>
+                        <div class="utilities-grid">
+                            <a href="tel:020164888" class="util-btn">
+                                <div class="util-icon"><i class="fa-solid fa-phone"></i></div>
+                                <span>สายด่วน กยศ.</span>
+                            </a>
+                            <a href="mailto:info@studentloan.or.th" class="util-btn">
+                                <div class="util-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <span>ส่งอีเมลติดต่อ</span>
+                            </a>
+                            <a href="https://line.me" target="_blank" class="util-btn">
+                                <div class="util-icon line-color"><i class="fa-brands fa-line"></i></div>
+                                <span>LINE Official</span>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- APP FOOTER (Inside scrollable content, highly condensed) -->
+                    <footer class="compact-app-footer">
+                        <div class="footer-logo">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span>กองทุนเงินให้กู้ยืมเพื่อการศึกษา (กยศ.)</span>
+                        </div>
+                        <p class="footer-address">
+                            เลขที่ 89 อาคาร เอไอเอ แคปปิตอล เซ็นเตอร์ ชั้น 5-6 ถนนรัชดาภิเษก แขวงดินแดง เขตดินแดง กรุงเทพฯ 10400
+                        </p>
+                        <p class="footer-copy">© 2026 Student Loan Fund. All rights reserved.</p>
+                    </footer>
+
+                    </div><!-- END OF DASHBOARD VIEW -->
+
+                    <!-- ================= NEW BORROWER VIEW ================= -->
+                    <div id="new-borrower-view" class="app-view">
+                        <div class="new-flow-container">
+                            <div class="flow-step-card">
+                                <div class="flow-title-bar">
+                                    <i class="fa-solid fa-file-signature"></i>
+                                    <h2>ระบบลงทะเบียนขอทุนกู้ยืม กยศ. รายใหม่</h2>
+                                </div>
+                                <p style="font-size: 11px; color: var(--dark-muted); line-height: 1.4; margin-bottom: 12px;">
+                                    ยินดีต้อนรับเข้าสู่ขั้นตอนการบันทึกสิทธิ์กู้ยืมประจำปีการศึกษา 2569 กรุณากรอกแบบฟอร์มให้สมบูรณ์ตามขั้นตอน (จำลองเพื่อการโชว์ประสิทธิภาพ UX)
+                                </p>
+                                
+                                <div class="flow-stepper-dots">
+                                    <div class="flow-stepper-progress-bar" id="nb-progress"></div>
+                                    <div class="step-dot active" id="nb-dot-1">1</div>
+                                    <div class="step-dot" id="nb-dot-2">2</div>
+                                    <div class="step-dot" id="nb-dot-3">3</div>
+                                    <div class="step-dot" id="nb-dot-4">4</div>
+                                </div>
+                                
+                                <!-- Step 1: Personal Info -->
+                                <div class="step-content-pane active" id="nb-step-1">
+                                    <h3 style="font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--primary);">ขั้นตอนที่ 1: ข้อมูลส่วนตัวผู้ขอรับสิทธิ์</h3>
+                                    <div class="form-group-item">
+                                        <label>หมายเลขบัตรประจำตัวประชาชน</label>
+                                        <input type="text" class="form-input-text" placeholder="x-xxxx-xxxxx-xx-x" value="1-1008-01234-56-7" readonly>
+                                    </div>
+                                    <div class="form-group-item">
+                                        <label>ชื่อ-นามสกุล (ภาษาไทย)</label>
+                                        <input type="text" class="form-input-text" placeholder="ชื่อ และนามสกุลจริง" value="นายสมศักดิ์ รักเรียน">
+                                    </div>
+                                    <div class="form-group-item">
+                                        <label>วัน/เดือน/ปีเกิด</label>
+                                        <input type="text" class="form-input-text" placeholder="วว/ดด/ปปปป" value="12 สิงหาคม 2548">
+                                    </div>
+                                    <div class="flow-button-row">
+                                        <button class="flow-btn-next" onclick="nextNbStep(1)">ขั้นตอนต่อไป <i class="fa-solid fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Step 2: Education Info -->
+                                <div class="step-content-pane" id="nb-step-2">
+                                    <h3 style="font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--primary);">ขั้นตอนที่ 2: ข้อมูลสถาบันศึกษาที่จะเข้าศึกษา</h3>
+                                    <div class="form-group-item">
+                                        <label>ระดับการศึกษาที่ต้องการกู้ยืม</label>
+                                        <input type="text" class="form-input-text" value="ปริญญาตรี (ระดับอุดมศึกษา)" readonly>
+                                    </div>
+                                    <div class="form-group-item">
+                                        <label>ชื่อสถานศึกษา / มหาวิทยาลัย</label>
+                                        <input type="text" class="form-input-text" placeholder="ระบุชื่อโรงเรียน/มหาวิทยาลัย" value="มหาวิทยาลัยเกษตรศาสตร์">
+                                    </div>
+                                    <div class="form-group-item">
+                                        <label>คณะ / สาขาวิชา</label>
+                                        <input type="text" class="form-input-text" placeholder="ระบุคณะและสาขา" value="คณะวิศวกรรมศาสตร์ สาขาวิศวกรรมคอมพิวเตอร์">
+                                    </div>
+                                    <div class="flow-button-row">
+                                        <button class="flow-btn-prev" onclick="prevNbStep(2)"><i class="fa-solid fa-chevron-left"></i> ย้อนกลับ</button>
+                                        <button class="flow-btn-next" onclick="nextNbStep(2)">ขั้นตอนต่อไป <i class="fa-solid fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Step 3: Loan Options -->
+                                <div class="step-content-pane" id="nb-step-3">
+                                    <h3 style="font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--primary);">ขั้นตอนที่ 3: ความประสงค์การขอเงินกู้ยืม</h3>
+                                    <div class="form-group-item">
+                                        <label>ลักษณะเงินกู้ที่ขอยื่นกู้ (กองทุน กยศ.)</label>
+                                        <input type="text" class="form-input-text" value="ค่าเล่าเรียนและค่าธรรมเนียมการศึกษา" readonly>
+                                    </div>
+                                    <div class="form-group-item">
+                                        <label>วงเงินกู้ยืมที่ต้องการขอกู้ยืมต่อปีการศึกษา</label>
+                                        <input type="text" class="form-input-text" value="฿83,200.00" readonly>
+                                    </div>
+                                    <div class="form-group-item">
+                                        <label>ความต้องการค่าครองชีพรายเดือน (฿3,000/เดือน)</label>
+                                        <div style="display: flex; gap: 14px; margin-top: 4px;">
+                                            <label style="font-weight: normal; display:flex; align-items:center; gap:6px;">
+                                                <input type="radio" name="allowance" checked> ประสงค์รับเงินค่าครองชีพ
+                                            </label>
+                                            <label style="font-weight: normal; display:flex; align-items:center; gap:6px;">
+                                                <input type="radio" name="allowance"> ไม่ประสงค์รับ
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="flow-button-row">
+                                        <button class="flow-btn-prev" onclick="prevNbStep(3)"><i class="fa-solid fa-chevron-left"></i> ย้อนกลับ</button>
+                                        <button class="flow-btn-next" onclick="nextNbStep(3)">ขั้นตอนต่อไป <i class="fa-solid fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Step 4: Summary -->
+                                <div class="step-content-pane" id="nb-step-4">
+                                    <h3 style="font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--success);"><i class="fa-solid fa-circle-check"></i> ขั้นตอนที่ 4: สรุปความประสงค์และยืนยันข้อมูล</h3>
+                                    <div style="background-color: var(--primary-light); padding: 12px; border-radius: 8px; font-size: 11px; color: var(--primary-dark); line-height: 1.5; margin-bottom: 12px;">
+                                        <strong>ขอกู้ยืมประเภท:</strong> กยศ. รายใหม่ ปีการศึกษา 2569<br>
+                                        <strong>ชื่อผู้ขอกู้:</strong> นายสมศักดิ์ รักเรียน<br>
+                                        <strong>สถานศึกษา:</strong> มหาวิทยาลัยเกษตรศาสตร์<br>
+                                        <strong>วงเงินขอรับการสนับสนุน:</strong> ฿83,200.00 บาท + ค่าครองชีพรายเดือน
+                                    </div>
+                                    <div style="font-size:10px; color: var(--dark-muted); line-height: 1.4; margin-bottom: 14px;">
+                                        * ระบบจะส่งเอกสารและข้อมูลไปยังคณะอนุกรรมการพิจารณาตรวจสอบสิทธิ์ของสถานศึกษาเพื่อพิจารณาขั้นถัดไปผ่านทางระบบอิเล็กทรอนิกส์
+                                    </div>
+                                    <div class="flow-button-row">
+                                        <button class="flow-btn-prev" onclick="prevNbStep(4)"><i class="fa-solid fa-chevron-left"></i> ย้อนกลับ</button>
+                                        <button class="flow-btn-next" style="background-color: var(--success);" onclick="submitNbApplication()">ส่งคำขอกู้ยืมสำเร็จ <i class="fa-solid fa-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================= GUARANTOR VIEW ================= -->
+                    <div id="guarantor-view" class="app-view">
+                        <div class="new-flow-container">
+                            <div class="flow-step-card">
+                                <div class="flow-title-bar">
+                                    <i class="fa-solid fa-user-shield"></i>
+                                    <h2>พอร์ทัลผู้ค้ำประกัน (Guarantor Portal)</h2>
+                                </div>
+                                <div style="display:flex; align-items:center; gap:12px; background-color: var(--warning-light); color: var(--warning); padding:10px 12px; border-radius:10px; font-size:11px; margin-bottom:14px; font-weight:600;">
+                                    <i class="fa-solid fa-circle-exclamation" style="font-size:14px;"></i>
+                                    <span>พบสัญญาที่อยู่ภายใต้การค้ำประกันของคุณ 1 ฉบับ</span>
+                                </div>
+                                
+                                <div class="contract-card" style="border:1.5px solid var(--border); box-shadow:none; margin-bottom:0;">
+                                    <div class="contract-card-header" style="background-color:var(--primary-dark); color:#fff; padding:10px; margin:-12px -12px 10px -12px; border-radius: 8px 8px 0 0;">
+                                        <span class="title" style="color:#fff;"><i class="fa-solid fa-file-contract"></i> สัญญาค้ำประกัน #CON-255801</span>
+                                    </div>
+                                    <div style="font-size: 11.5px; display:flex; flex-direction:column; gap:6px;">
+                                        <div>ผู้ขอกู้ยืมเงิน: <strong>นายสมศักดิ์ รักเรียน</strong></div>
+                                        <div>ประเภทบัญชีหนี้: <strong>กยศ. ปริญญาตรี</strong></div>
+                                        <div>สถานศึกษา: <strong>มหาวิทยาลัยเกษตรศาสตร์</strong></div>
+                                        <div style="border-top:1px dashed var(--border); padding-top:8px; margin-top:6px;">
+                                            ยอดหนี้เงินกู้ค้ำประกันคงเหลือ: <strong style="color:var(--primary); font-size:13px;">฿83,200.00</strong>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+                                            <span>สถานะสัญญาล่าสุด:</span> <span class="tag-pill tag-success">ปกติ</span>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top:14px; font-size:9.5px; color:var(--dark-muted); line-height: 1.45; border-top: 1px dashed var(--border); padding-top: 8px;">
+                                        * ในฐานะผู้ค้ำประกัน คุณสามารถตรวจสอบรายงานความคืบหน้าการชำระหนี้ของผู้กู้ได้แบบเรียลไทม์เพื่อความโปร่งใสผ่านแอปพลิเคชัน
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================= INSTITUTION VIEW ================= -->
+                    <div id="institution-view" class="app-view">
+                        <div class="new-flow-container">
+                            <div class="flow-step-card">
+                                <div class="flow-title-bar">
+                                    <i class="fa-solid fa-school"></i>
+                                    <h2>บริการสถาบันการศึกษา (Education Portal)</h2>
+                                </div>
+                                <p style="font-size:11.5px; color:var(--dark-muted); line-height:1.45; margin-bottom:14px;">
+                                    พอร์ทัลหลักจำลองสำหรับฝ่ายแนะแนว/ทุนการศึกษาของโรงเรียนหรือมหาวิทยาลัย เพื่อตรวจเช็คผู้ขอรับทุนสะสมและอนุมัติใบคำร้องขอกู้ยืม
+                                </p>
+                                
+                                <h3 style="font-size:12.5px; font-weight:700; margin-bottom:8px; color:var(--dark);">รายการผู้ยื่นขอรายใหม่ (รอพิจารณา)</h3>
+                                <div style="display:flex; flex-direction:column; gap:8px;">
+                                    <div style="background-color:var(--light); border:1px solid var(--border); border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+                                        <div>
+                                            <strong style="font-size:12px; display:block; color: var(--dark);">นายสมศักดิ์ รักเรียน</strong>
+                                            <span style="font-size:9.5px; color:var(--dark-muted);">คณะวิศวกรรมศาสตร์ ม.เกษตรศาสตร์</span>
+                                        </div>
+                                        <div style="display:flex; gap:6px;">
+                                            <button class="pay-all-btn-sm" style="background-color:var(--success); font-size:9.5px; padding:6px 10px;" onclick="alertSim('อนุมัติทุนสำเร็จ', 'ส่งประวัติใบขอทุนของ สมศักดิ์ ไปที่สำนักงานใหญ่ กยศ. แล้ว')">อนุมัติ</button>
+                                            <button class="pay-all-btn-sm" style="background-color:var(--danger); font-size:9.5px; padding:6px 10px;" onclick="alertSim('ปฏิเสธใบคำร้อง', 'ส่งเอกสารข้อขัดข้องคืนผู้สมัครกู้เรียบร้อย')">ตีกลับ</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================= GENERAL VIEW ================= -->
+                    <div id="general-view" class="app-view">
+                        <div class="new-flow-container">
+                            <div class="flow-step-card">
+                                <div class="flow-title-bar">
+                                    <i class="fa-solid fa-calculator"></i>
+                                    <h2>เครื่องมือบริการสาธารณะ กยศ.</h2>
+                                </div>
+                                <p style="font-size:11.5px; color:var(--dark-muted); line-height:1.45; margin-bottom:12px;">
+                                    จำลองระบบช่วยคำนวณสัดส่วนตารางเบี้ยปรับ ดอกเบี้ย และแผนชำระหนี้รายงวดตามระเบียบพระราชบัญญัติใหม่
+                                </p>
+                                
+                                <div class="form-group-item">
+                                    <label>ระบุยอดเงินกู้รวมสัญญาที่ต้องการประเมิน (บาท)</label>
+                                    <input type="number" class="form-input-text" placeholder="ระบุยอดเงินต้น" value="100000" id="calc-principal" oninput="runSimCalc()">
+                                </div>
+                                <div class="form-group-item">
+                                    <label>เลือกระยะเวลาแผนการผ่อนชำระหนี้ (ปี)</label>
+                                    <select class="form-input-text" id="calc-years" onchange="runSimCalc()">
+                                        <option value="15" selected>แผนชำระหนี้ 15 ปี (มาตรฐาน)</option>
+                                        <option value="10">แผนชำระหนี้ 10 ปี</option>
+                                        <option value="5">แผนชำระหนี้ 5 ปี</option>
+                                    </select>
+                                </div>
+                                
+                                <div style="background-color:var(--primary-light); color:var(--primary-dark); padding:12px; border-radius:10px; font-size:11.5px; margin-top:14px; line-height:1.75;">
+                                    <div style="display:flex; justify-content:space-between;"><span>ยอดชำระเฉลี่ยต่อปี:</span><strong id="calc-res-annual">฿6,666.67 / ปี</strong></div>
+                                    <div style="display:flex; justify-content:space-between;"><span>สัดส่วนดอกเบี้ยต่อปี (1%):</span><strong id="calc-res-interest">฿1,000.00 / ปี</strong></div>
+                                    <div style="display:flex; justify-content:space-between;"><span>อัตราเบี้ยปรับล่าช้าสะสม (0.5%):</span><strong id="calc-res-penalty">฿500.00 / ปี</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+
+                <!-- DYNAMIC DETAILS SCREEN (Initially hidden, slides in from right) -->
+                <div class="detail-screen" id="detail-screen">
+                    <header class="detail-header">
+                        <button class="back-btn" onclick="closeDetailScreen()">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <h3 class="detail-header-title">รายละเอียดบัญชีเงินกู้</h3>
+                        <div style="width: 40px;"></div> <!-- Spacer for centering title -->
+                    </header>
+
+                    <div class="detail-content" id="detail-content-area">
+                        <!-- Content will be injected dynamically via JS based on card clicked -->
+                    </div>
+                </div>
+
+                <!-- DYNAMIC PAYMENT SCREEN (Initially hidden, slides in from right/bottom) -->
+                <div class="detail-screen payment-screen" id="payment-screen">
+                    <header class="detail-header">
+                        <button class="back-btn" onclick="closePaymentScreen()">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <h3 class="detail-header-title" id="payment-header-title">เลือกรายการชำระเงิน</h3>
+                        <div style="width: 40px;"></div> <!-- Spacer for centering title -->
+                    </header>
+
+                    <div class="detail-content" id="payment-content-area" style="padding-bottom: 95px;">
+                        <!-- Payment details and segmented controls injected dynamically via JS -->
+                    </div>
+
+                    <!-- Sticky Bottom Action Bar (Fixed at bottom of this viewport) -->
+                    <div class="sticky-pay-bar" id="sticky-pay-bar">
+                        <div class="sticky-pay-left">
+                            <span class="sticky-lbl">ยอดชำระเงินรวม</span>
+                            <span class="sticky-val" id="sticky-pay-amount">฿6,703.83</span>
+                        </div>
+                        <button class="sticky-pay-btn" id="sticky-pay-btn" onclick="submitPayment()">
+                            ชำระเงิน <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DYNAMIC CONTRACT HISTORY SCREEN (Initially hidden, slides in from right) -->
+                <div class="detail-screen history-timeline-screen" id="history-timeline-screen" style="z-index: 220;">
+                    <header class="detail-header">
+                        <button class="back-btn" onclick="closeHistoryTimelineScreen()">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <h3 class="detail-header-title">ประวัติการดำเนินการสัญญา</h3>
+                        <div style="width: 40px;"></div> <!-- Spacer for centering title -->
+                    </header>
+
+                    <div class="detail-content" id="history-timeline-content-area">
+                        <!-- Stepper timeline will be injected dynamically via JS -->
+                    </div>
+                </div>
+                <!-- DYNAMIC PAYMENT CHANNEL SCREEN (Initially hidden, slides in from right) -->
+                <div class="detail-screen payment-channel-screen" id="payment-channel-screen" style="z-index: 210;">
+                    <header class="detail-header">
+                        <button class="back-btn" onclick="closePaymentChannelScreen()">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <h3 class="detail-header-title">เลือกช่องทางชำระเงิน</h3>
+                        <div style="width: 40px;"></div> <!-- Spacer for centering title -->
+                    </header>
+
+                    <div class="detail-content" id="payment-channel-content-area" style="padding-bottom: 30px;">
+                        <!-- Content will be injected dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- PAYMENT POPUP MODALS -->
+                <div class="payment-modal-overlay" id="payment-modal-overlay" onclick="closePaymentModal()">
+                    <div class="payment-modal" id="payment-modal" onclick="event.stopPropagation()">
+                        <!-- Modal header and contents injected dynamically based on option -->
+                    </div>
+                </div>
+
+                <!-- NOTIFICATION MODAL / DRAWER -->
+                <div class="app-drawer-overlay" id="app-overlay" onclick="closeAllDrawers()"></div>
+                
+                <div class="app-drawer drawer-bottom" id="notification-drawer">
+                    <div class="drawer-drag-handle"></div>
+                    <div class="drawer-header">
+                        <h3>การแจ้งเตือน</h3>
+                        <button class="close-drawer-btn" onclick="closeAllDrawers()"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <div class="drawer-body">
+                        <div class="notification-item unread">
+                            <div class="notif-icon warning-bg"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <div class="notif-text">
+                                <span class="notif-title">ยอดค้างชำระบัญชี กรอ.</span>
+                                <p class="notif-desc">บัญชีกรอ. #100825412 ของคุณเลยกำหนดชำระแล้ว กรุณาชำระเพื่อเลี่ยงเบี้ยปรับ</p>
+                                <span class="notif-time">2 ชั่วโมงที่แล้ว</span>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notif-icon success-bg"><i class="fa-solid fa-circle-check"></i></div>
+                            <div class="notif-text">
+                                <span class="notif-title">ชำระบัญชีสำเร็จ</span>
+                                <p class="notif-desc">คุณชำระยอดงวดบัญชี กยศ. #100825401 จำนวน ฿4,693.20 เรียบร้อยแล้ว</p>
+                                <span class="notif-time">3 วันที่แล้ว</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- APP MENU DRAWER -->
+                <div class="app-drawer drawer-right" id="menu-drawer">
+                    <div class="menu-header">
+                        <div class="user-profile-summary">
+                            <div class="avatar-lg"><i class="fa-solid fa-user-graduate"></i></div>
+                            <div class="profile-info">
+                                <span class="profile-name">ทดสอบ ผู้กู้</span>
+                                <span class="profile-role">ผู้กู้ยืม / Borrower</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-items">
+                        <a href="#" class="menu-item active" onclick="closeAllDrawers()"><i class="fa-solid fa-house"></i> หน้าแรก</a>
+                        <a href="#" class="menu-item" onclick="showSectionUnderDev('เลือกบัญชีที่แสดงอยู่')"><i class="fa-solid fa-retweet"></i> เลือกบัญชีที่แสดงอยู่</a>
+                        <a href="#" class="menu-item" onclick="showSectionUnderDev('ประวัติการชำระเงิน')"><i class="fa-solid fa-history"></i> ประวัติการชำระเงิน</a>
+                        <a href="#" class="menu-item" onclick="showSectionUnderDev('บริการอื่นๆ')"><i class="fa-solid fa-cubes"></i> บริการอื่นๆ ของกองทุน</a>
+                        <a href="#" class="menu-item" onclick="showSectionUnderDev('การตั้งค่า')"><i class="fa-solid fa-gear"></i> การตั้งค่าระบบ</a>
+                        <div class="menu-divider"></div>
+                        <a href="#" class="menu-item text-danger" onclick="showSectionUnderDev('ออกจากระบบ')"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</a>
+                    </div>
+                </div>
+
+                <!-- INTERACTIVE BOTTOM NAVIGATION BAR (True App Experience) -->
+                <nav class="app-nav-bar">
+                    <button class="nav-item active" id="nav-home" onclick="switchTab('home')">
+                        <i class="fa-solid fa-house"></i>
+                        <span>หน้าหลัก</span>
+                    </button>
+                    <button class="nav-item" id="nav-services" onclick="switchTab('services')">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>บริการ</span>
+                    </button>
+                    <button class="nav-item" id="nav-notifications" onclick="switchTab('notifications')">
+                        <span class="nav-icon-wrapper">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="nav-badge">1</span>
+                        </span>
+                        <span>แจ้งเตือน</span>
+                    </button>
+                    <button class="nav-item" id="nav-profile" onclick="switchTab('profile')">
+                        <i class="fa-solid fa-user"></i>
+                        <span>ข้อมูลผู้ใช้</span>
+                    </button>
+                </nav>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!-- Main JS Code -->
+    <script type="module" src="app.js?v=2"></script>
+
+</body>
+</html>

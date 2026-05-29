@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กยศ. e-PaySLF - นายจ้าง Portal</title>
+    <!-- Google Fonts for Modern Thai and English Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet (Shared) -->
+    <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+    <!-- Mobile App Preview -->
+    <div class="app-container">
+
+        <!-- Phone Shell Container -->
+        <div class="phone-shell" id="phone-shell-container" style="display: block;">
+            <!-- Screen Notch / Dynamic Island Mock -->
+            <div class="phone-notch"></div>
+            
+            <!-- Main App Viewport -->
+            <div class="app-viewport">
+                <!-- Phone Status Bar -->
+                <div class="phone-status-bar">
+                    <span class="status-time" id="live-clock">09:44</span>
+                    <div class="status-icons">
+                        <i class="fa-solid fa-wifi"></i>
+                        <i class="fa-solid fa-signal"></i>
+                        <i class="fa-solid fa-battery-three-quarters"></i>
+                    </div>
+                </div>
+                
+                <!-- APP HEADER -->
+                <header class="app-header">
+                    <div class="header-left">
+                        <div class="app-logo" style="width: 140px;">
+                            <!-- Official high fidelity image logo of Student Loan Fund (กยศ.) -->
+                            <img src="DSL.png" alt="กยศ. Logo" class="koyosor-logo-img" style="height: 28px;">
+                            <span style="font-size: 11px; font-weight: 700; color: var(--primary); margin-left: 6px; letter-spacing: -0.2px;">e-PaySLF</span>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <!-- Interactive Account Selector Dropdown -->
+                        <div class="account-selector-container">
+                            <button class="account-selector-btn" onclick="toggleAccountDropdown(event)" aria-label="Select Account" style="background-color: #f0f4ff; border: 1.5px solid rgba(29, 78, 216, 0.08);">
+                                <span class="acc-sel-lbl" style="font-size: 10px; font-weight: 700; color: var(--primary);">เจ มาร์ท (Admin)</span>
+                                <i class="fa-solid fa-chevron-down" style="color: var(--primary); font-size: 10px;"></i>
+                            </button>
+                            <div class="account-dropdown-menu" id="account-dropdown">
+                                <div class="dropdown-item active" onclick="switchActiveAccount(1); event.stopPropagation();">
+                                    <span class="type type-koyosor">เจ มาร์ท</span>
+                                    <span class="num">Admin</span>
+                                    <span class="check-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                </div>
+                                <div class="dropdown-item" onclick="switchActiveAccount(2); event.stopPropagation();">
+                                    <span class="type type-kror">เจ มาร์ท</span>
+                                    <span class="num">HR staff</span>
+                                    <span class="check-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- DYNAMIC CONTENT CONTAINER (With Scroll) -->
+                <main class="app-content" id="main-content">
+                    
+                    <!-- ================= EMPLOYER DASHBOARD VIEW ================= -->
+                    <div id="dashboard-view" class="app-view active">
+                        
+                        <!-- USER GREETING SECTION -->
+                        <section class="welcome-section">
+                            <div class="welcome-header">
+                                <div>
+                                    <h1 class="welcome-title">สวัสดี, <span>คุณวรรณา พาสุข</span></h1>
+                                    <p class="welcome-subtitle">ผู้ดูแลระบบ บมจ. เจ มาร์ท (e-PaySLF)</p>
+                                </div>
+                                <div class="user-avatar" style="background-color: var(--primary-light); color: var(--primary);">
+                                    <i class="fa-solid fa-building-user"></i>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- EMPLOYER GUIDELINES & ANNOUNCEMENT -->
+                        <section class="account-list-section" style="margin-top: 8px;">
+                            <div style="background-color: #ffffff; border-radius: 16px; border: 1.5px solid var(--border); box-shadow: var(--shadow-sm); padding: 16px 14px; display: flex; flex-direction: column; gap: 14px;">
+                                
+                                <!-- Main Title Paragraph -->
+                                <h2 style="font-size: 14px; font-weight: 700; color: var(--primary-dark); line-height: 1.45; margin-bottom: 2px;">
+                                    กองทุนเงินให้กู้ยืมเพื่อการศึกษาผ่านกรมสรรพากร (e-PaySLF)
+                                </h2>
+
+                                <!-- Subtitle / Expressing Gratitude Paragraph -->
+                                <p style="font-size: 11.5px; color: var(--dark-muted); line-height: 1.6; text-align: justify; text-justify: inter-word; margin: 0;">
+                                    กองทุนฯ ขอขอบคุณ องค์กรนายจ้างทุกแห่งที่ให้ความร่วมมือในการหักเงินเดือนผู้ยืมเงิน ผ่านระบบรับชำระเงินกู้ยืม กยศ. ผ่านกรมสรรพากร โดยปัจจุบันระบบเปิดให้ใช้งานได้ดังนี้
+                                </p>
+
+                                <!-- Stepper / Guidelines List -->
+                                <div style="display: flex; flex-direction: column; gap: 10px; padding: 4px 0;">
+                                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                        <div style="width: 22px; height: 22px; border-radius: 50%; background-color: var(--primary-light); color: var(--primary); font-family: var(--font-number); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">1</div>
+                                        <span style="font-size: 12px; color: var(--dark); font-weight: 500; line-height: 1.45;">เพิ่ม และแก้ไขข้อมูลผู้ใช้งาน ผ่านหน้า Profile</span>
+                                    </div>
+
+                                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                        <div style="width: 22px; height: 22px; border-radius: 50%; background-color: var(--primary-light); color: var(--primary); font-family: var(--font-number); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">2</div>
+                                        <span style="font-size: 12px; color: var(--dark); font-weight: 500; line-height: 1.45;">กำหนดรหัส Pin Code สำหรับยืนยันการเข้าใช้งาน</span>
+                                    </div>
+
+                                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                        <div style="width: 22px; height: 22px; border-radius: 50%; background-color: var(--primary-light); color: var(--primary); font-family: var(--font-number); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">3</div>
+                                        <span style="font-size: 12px; color: var(--dark); font-weight: 500; line-height: 1.45;">เรียกดูข้อมูลจำนวนเงินที่ กยศ. แจ้งหักเงินเดือนของหน่วยงาน สรุปรายเดือนและข้อมูลรายบุคคล</span>
+                                    </div>
+
+                                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                        <div style="width: 22px; height: 22px; border-radius: 50%; background-color: var(--primary-light); color: var(--primary); font-family: var(--font-number); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">4</div>
+                                        <span style="font-size: 12px; color: var(--dark); font-weight: 500; line-height: 1.45;">การ Download ข้อมูลการแจ้งหักเงินเดือน รายบุคคล(รูปแบบไฟล์ CSV และ Excel)</span>
+                                    </div>
+
+                                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                        <div style="width: 22px; height: 22px; border-radius: 50%; background-color: var(--primary-light); color: var(--primary); font-family: var(--font-number); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">5</div>
+                                        <span style="font-size: 12px; color: var(--dark); font-weight: 500; line-height: 1.45;">การ Upload ข้อมูลการแจ้งหักเงินเดือน รายบุคคล(รูปแบบไฟล์ CSV และ Excel)</span>
+                                    </div>
+
+                                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                        <div style="width: 22px; height: 22px; border-radius: 50%; background-color: var(--primary-light); color: var(--primary); font-family: var(--font-number); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">6</div>
+                                        <span style="font-size: 12px; color: var(--dark); font-weight: 500; line-height: 1.45;">การแก้ไขจำนวนเงิน และระบุสาเหตุ กรณีไม่นำส่งเงิน หรือปรับลดจำนวนเงิน</span>
+                                    </div>
+
+                                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                        <div style="width: 22px; height: 22px; border-radius: 50%; background-color: var(--primary-light); color: var(--primary); font-family: var(--font-number); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">7</div>
+                                        <span style="font-size: 12px; color: var(--dark); font-weight: 500; line-height: 1.45;">การยืนยันข้อมูลการหักเงินเดือน และพิมพ์ชุดชำระเงิน (Pay-In Slip)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Highlighted Footer Warning Note -->
+                                <div style="background-color: #fef2f2; color: #ef4444; border: 1.5px solid rgba(239, 68, 68, 0.15); padding: 12px 14px; border-radius: 12px; font-size: 11px; line-height: 1.5; display: flex; gap: 10px; align-items: flex-start; margin-top: 4px;">
+                                    <i class="fa-solid fa-circle-info" style="font-size: 14px; margin-top: 2px; color: #ef4444; flex-shrink: 0;"></i>
+                                    <span style="text-align: justify; text-justify: inter-word;"><strong>หมายเหตุ:</strong> หน่วยงาน (นายจ้าง) สามารถ Upload ข้อมูลการแจ้งหักเงินเดือนรายบุคคลรูปแบบไฟล์ Excel ได้แล้ว</span>
+                                </div>
+
+                            </div>
+                        </section>
+
+                    </div><!-- END OF DASHBOARD VIEW -->
+
+                </main>
+
+                <!-- DYNAMIC PAYMENT CHANNEL SCREEN (Initially hidden) -->
+                <div class="detail-screen payment-channel-screen" id="payment-channel-screen" style="z-index: 210;">
+                    <header class="detail-header">
+                        <button class="back-btn" onclick="closePaymentChannelScreen()">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <h3 class="detail-header-title">เลือกช่องทางนำส่งเงิน</h3>
+                        <div style="width: 40px;"></div>
+                    </header>
+
+                    <div class="detail-content" id="payment-channel-content-area" style="padding-bottom: 30px;">
+                        <!-- Content will be injected dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- DYNAMIC SERVICE SPECIFIC SCREEN / POPUPS -->
+                <div class="payment-modal-overlay" id="payment-modal-overlay" onclick="closePaymentModal()">
+                    <div class="payment-modal" id="payment-modal" onclick="event.stopPropagation()">
+                        <!-- Modal contents injected dynamically based on option -->
+                    </div>
+                </div>
+
+                <!-- APP DRAWER / NOTIFICATION DRAWER -->
+                <div class="app-drawer-overlay" id="app-overlay" onclick="closeAllDrawers()"></div>
+                
+                <div class="app-drawer drawer-bottom" id="notification-drawer">
+                    <div class="drawer-drag-handle"></div>
+                    <div class="drawer-header">
+                        <h3>การแจ้งเตือนนายจ้าง</h3>
+                        <button class="close-drawer-btn" onclick="closeAllDrawers()"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <div class="drawer-body">
+                        <div class="notification-item unread">
+                            <div class="notif-icon warning-bg"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <div class="notif-text">
+                                <span class="notif-title">กรุณานำส่งยอดเงินหักพนักงาน</span>
+                                <p class="notif-desc">การแจ้งหักเงินงวดเดือน พฤษภาคม 2569 ครบกำหนดวันที่ 15 มิ.ย. 2569 กรุณานำส่งเพื่อเลี่ยงค่าปรับล่าช้าของหน่วยงาน</p>
+                                <span class="notif-time">1 วันที่แล้ว</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTERACTIVE BOTTOM NAVIGATION BAR (Employer Context) -->
+                <nav class="app-nav-bar">
+                    <button class="nav-item active" id="nav-home" onclick="switchTab('home')">
+                        <i class="fa-solid fa-house"></i>
+                        <span>หน้าหลัก</span>
+                    </button>
+                    <button class="nav-item" id="nav-services" onclick="switchTab('services')">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>บริการ</span>
+                    </button>
+                    <button class="nav-item" id="nav-notifications" onclick="switchTab('notifications')">
+                        <span class="nav-icon-wrapper">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="nav-badge">1</span>
+                        </span>
+                        <span>แจ้งเตือน</span>
+                    </button>
+                    <button class="nav-item" id="nav-profile" onclick="switchTab('profile')">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span>แอดมิน</span>
+                    </button>
+                </nav>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Employer App Specific JS -->
+    <script type="module" src="app.js?v=3"></script>
+</body>
+</html>

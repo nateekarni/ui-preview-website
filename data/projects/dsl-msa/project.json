@@ -1,0 +1,11 @@
+{
+  "projectId": "dsl-msa",
+  "projectName": "กยศ. - ระบบ MSA",
+  "description": "ระบบ Mobile Service Application สำหรับกองทุนเงินให้กู้ยืมเพื่อการศึกษา (กยศ.) รองรับผู้กู้ยืม, ผู้ค้ำประกัน, สถาบันการศึกษา และบริการสาธารณะ",
+  "platforms": ["mobile-app"],
+  "status": "in-progress",
+  "owner": "DSL Product Team",
+  "logoPath": "/projects/dsl-msa/logo.png",
+  "createdAt": "2026-05-29",
+  "updatedAt": "2026-05-29"
+}
