@@ -24,3 +24,8 @@ export default async function HTMLPreviewPage({ params }: PreviewPageProps) {
     />
   );
 }
+
+export async function generateStaticParams() {
+  const screens = await getScreens();
+  return screens.map((s) => ({ id: s.screenId }));
+}

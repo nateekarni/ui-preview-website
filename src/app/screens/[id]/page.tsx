@@ -68,3 +68,8 @@ export default async function ScreenDetailPage({ params }: ScreenPageProps) {
     </AppShell>
   );
 }
+
+export async function generateStaticParams() {
+  const screens = await getScreens();
+  return screens.map((s) => ({ id: s.screenId }));
+}

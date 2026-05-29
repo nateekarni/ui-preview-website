@@ -118,3 +118,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     </AppShell>
   );
 }
+
+export async function generateStaticParams() {
+  const projects = await getProjects();
+  return projects.map((p) => ({ id: p.projectId }));
+}
